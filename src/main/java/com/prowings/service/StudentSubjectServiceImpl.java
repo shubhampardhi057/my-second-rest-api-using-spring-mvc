@@ -44,6 +44,12 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
 		
 		return studentSubjetDao.getSubjects();
 	}
+
+	@Override
+	public List<Subjects> getStudentSubjectByID(int id) {
+		
+		return studentSubjetDao.getStudentSubjectByID(id);
+	}
 	
 
 }

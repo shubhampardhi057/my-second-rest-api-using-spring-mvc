@@ -17,5 +17,7 @@ public interface StudentSubjectDao {
 
 	public List<Subjects> getSubjects();
 	
+	public List<Subjects> getStudentSubjectByID(int id);
+	
 
 }

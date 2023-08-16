@@ -17,5 +17,7 @@ public interface StudentSubjectService {
 
 	public List<Subjects> getSubject();
 	
+	public List<Subjects> getStudentSubjectByID(int id);
+	
 
 }

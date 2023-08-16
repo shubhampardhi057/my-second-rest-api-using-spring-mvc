@@ -41,6 +41,12 @@ public class StudentSubjectController {
 		return studentSubjectService.getStudent(id);
 	}
 	
+	@GetMapping("/students/{id}/subjects")
+	public List<Subjects> getStudentSubjectByID(@PathVariable int  id)
+	{
+		return studentSubjectService.getStudentSubjectByID(id);
+	}
+	
 	@GetMapping("/students/{id}/subjects/{id}")
 	public Subjects getStudentSubject(@PathVariable int  id)
 	{

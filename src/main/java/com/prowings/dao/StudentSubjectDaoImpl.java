@@ -126,4 +126,28 @@ public class StudentSubjectDaoImpl implements StudentSubjectDao {
 
 	}
 
+	@Override
+	public List<Subjects> getStudentSubjectByID(int id) {
+		
+		Student std = null;
+		List<Subjects> subLList = null;
+		
+		try {
+			Session session = sessionFactory.openSession();
+			Transaction txn = session.beginTransaction();
+
+			std = session.get(Student.class, id);
+			
+			txn.commit();
+			session.close();
+
+		} catch (HibernateException e) {
+			System.out.println("Error while getting !!" + e.getMessage());
+
+		}
+		
+		
+		return std.getSubjects();
+	}
+
 }
