@@ -18,6 +18,8 @@ public interface StudentSubjectDao {
 	public List<Subjects> getSubjects();
 	
 	public List<Subjects> getStudentSubjectByID(int id);
+
+	public List<Student> getStudentsPagination(Integer firstResult, Integer maxResult);
 	
 
 }

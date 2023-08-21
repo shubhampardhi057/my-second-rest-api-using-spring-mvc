@@ -18,6 +18,8 @@ public interface StudentSubjectService {
 	public List<Subjects> getSubject();
 	
 	public List<Subjects> getStudentSubjectByID(int id);
+
+	public List<Student> getStudentsPagination(Integer firstResult, Integer maxResult);
 	
 
 }

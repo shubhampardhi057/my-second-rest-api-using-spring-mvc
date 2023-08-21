@@ -1,5 +1,6 @@
 package com.prowings.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -49,6 +50,7 @@ public class StudentSubjectDaoImpl implements StudentSubjectDao {
 			Session session = sessionFactory.openSession();
 			Transaction txn = session.beginTransaction();
 
+//			Query<Student> query = session.createQuery("from Student s order by s.name");
 			Query<Student> query = session.createQuery("from Student");
 			listStd = query.getResultList();
 
@@ -146,8 +148,37 @@ public class StudentSubjectDaoImpl implements StudentSubjectDao {
 
 		}
 		
-		
 		return std.getSubjects();
+	}
+
+	@Override
+	public List<Student> getStudentsPagination(Integer firstResult, Integer maxResult) {
+		
+		List<Student> students = new ArrayList<>();
+		int paginatedCount =0;
+		
+		Session session = sessionFactory.openSession();
+		try {
+			Query query = session.createQuery("From Student");
+			query.setFirstResult(firstResult);
+			query.setMaxResults(maxResult);
+			students = query.list();
+			
+			if(students != null)
+				paginatedCount = students.size();
+				System.out.println("Total Result : "+paginatedCount);
+				for(Student std : students) {
+					System.out.println("Retrieved Students using Query :"+std);
+				}
+		} 
+		catch (HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			session.close();
+		}
+		return students;
 	}
 
 }

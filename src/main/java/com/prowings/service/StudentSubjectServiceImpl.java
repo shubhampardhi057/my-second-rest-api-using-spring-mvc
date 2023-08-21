@@ -50,6 +50,10 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
 		
 		return studentSubjetDao.getStudentSubjectByID(id);
 	}
-	
 
+	@Override
+	public List<Student> getStudentsPagination(Integer firstResult, Integer maxResult) {
+		
+		return studentSubjetDao.getStudentsPagination(firstResult,maxResult);
+	}
 }
