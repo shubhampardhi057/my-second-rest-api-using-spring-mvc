@@ -72,7 +72,7 @@ public class StudentSubjectController {
 		
 		List<Student> stdList = studentSubjectService.getStudents();
 		
-		Collections.sort(stdList,new StudentNameComparator());
+//		Collections.sort(stdList,new StudentNameComparator());
 		
 		return stdList;
 		
