@@ -50,8 +50,10 @@ public class StudentSubjectDaoImpl implements StudentSubjectDao {
 			Session session = sessionFactory.openSession();
 			Transaction txn = session.beginTransaction();
 
+			Query<Student> query = session.createQuery("from Student");
 //			Query<Student> query = session.createQuery("from Student s order by s.name");
-			Query<Student> query = session.createQuery("from Student s order by s.name desc");
+//			Query<Student> query = session.createQuery("from Student s order by s.name desc");
+//			Query<Student> query = session.createQuery("from Student s order by s.name asc");
 			listStd = query.getResultList();
 
 			txn.commit();

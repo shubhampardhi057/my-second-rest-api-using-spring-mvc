@@ -31,6 +31,8 @@ public class StudentSubjectController {
 			return "Student Not Saved Successfully !!!";
 		
 	}
+	
+	
 	@GetMapping("/students")   //Pagination
 	public List<Student> getAllStudnts(@RequestParam(required = false)Integer firstResult,@RequestParam(required = true) Integer maxResult)
 	{
