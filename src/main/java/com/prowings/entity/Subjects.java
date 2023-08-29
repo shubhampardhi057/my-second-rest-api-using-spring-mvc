@@ -1,4 +1,4 @@
-package com.prowings.entity;
+ package com.prowings.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

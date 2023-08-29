@@ -31,16 +31,22 @@ public class StudentSubjectController {
 			return "Student Not Saved Successfully !!!";
 		
 	}
-	
-	
-	@GetMapping("/students")   //Pagination
-	public List<Student> getAllStudnts(@RequestParam(required = false)Integer firstResult,@RequestParam(required = true) Integer maxResult)
+	@GetMapping("/students")
+	public List<Student> getAllStudents()
 	{
-		if((firstResult != null) && (maxResult != null))
-			return studentSubjectService.getStudentsPagination(firstResult,maxResult);
-		else
-			return studentSubjectService.getStudents();
+		return studentSubjectService.getStudents();
+		
 	}
+	
+	
+//	@GetMapping("/students")   //Pagination
+//	public List<Student> getAllStudnts(@RequestParam(required = false)Integer firstResult,@RequestParam(required = true) Integer maxResult)
+//	{
+//		if((firstResult != null) && (maxResult != null))
+//			return studentSubjectService.getStudentsPagination(firstResult,maxResult);
+//		else
+//			return studentSubjectService.getStudents();
+//	}
 	
 	
 	
