@@ -20,6 +20,11 @@ public interface StudentSubjectDao {
 	public List<Subjects> getStudentSubjectByID(int id);
 
 	public List<Student> getStudentsPagination(Integer firstResult, Integer maxResult);
+
+	public Student updateStudent(Student std);
+
+	public boolean deleteStudent(int id);
 	
 
+	
 }

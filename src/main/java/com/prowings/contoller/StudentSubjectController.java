@@ -4,9 +4,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -82,9 +84,27 @@ public class StudentSubjectController {
 		
 //		Collections.sort(stdList,new StudentNameComparator());
 		
-		return stdList;
+		return stdList;	
+	}
+	
+	@PutMapping("/students")
+	public Student updateStudent(@RequestBody Student std) {
+		System.out.println("request received to update student  : " + std);
+		
+		return studentSubjectService.updateStudent(std);
 		
 	}
+	
+	@DeleteMapping("/students/{id}")
+	public String deleteStudentById(@PathVariable("id") int id) {
+		System.out.println("request received to delete student with id : "+id);
+		
+		if(studentSubjectService.deleteStudent(id))
+			return "Student deleted successfully!!";
+		else
+			return "error while deleteing specified student!!!";
+	}
+	
 	
 	
 

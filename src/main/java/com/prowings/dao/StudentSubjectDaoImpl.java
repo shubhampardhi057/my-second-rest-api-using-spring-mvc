@@ -183,4 +183,66 @@ public class StudentSubjectDaoImpl implements StudentSubjectDao {
 		return students;
 	}
 
+		
+		@Override
+		public Student updateStudent(Student std) {
+			
+			Session session = sessionFactory.openSession();
+			Transaction tx = null;
+			Student retrievedStd = null;
+			try {
+
+				tx = session.beginTransaction();
+				//get existing std
+				retrievedStd =  session.get(Student.class, std.getId());
+				
+				if(retrievedStd != null)
+				{
+					System.out.println("found existing student.. Updating it!!");
+					retrievedStd.setRoll(std.getRoll());
+					retrievedStd.setName(std.getName());
+//					retrievedStd.setSubjects(std.getSubjects());
+					session.update(retrievedStd);
+					System.out.println("Updated successfully!!");
+				}
+				else
+				{
+					System.out.println("Since student was not present - creating it!!");
+					session.save(std);
+				}
+				tx.commit();
+
+			} catch (HibernateException ex) {
+				System.out.println("Unable to update student : "+ ex.getMessage());
+			}
+
+			return retrievedStd;
+		
+	}
+		@Override
+		public boolean deleteStudent(int id) {
+			
+			Session session = sessionFactory.openSession();
+			Transaction tx = null;
+			Student retrievedStd = null;
+			boolean res = false;
+			try {
+
+				tx = session.beginTransaction();
+				retrievedStd =  session.get(Student.class, id);
+				
+				if(retrievedStd != null)
+				{
+					session.delete(retrievedStd);
+					res = true;
+				}
+				tx.commit();
+
+			} catch (HibernateException ex) {
+				System.out.println("Unable to delete student : "+ ex.getMessage());
+			}
+
+			return res;
+		}
+
 }

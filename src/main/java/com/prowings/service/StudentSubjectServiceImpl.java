@@ -56,4 +56,16 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
 		
 		return studentSubjetDao.getStudentsPagination(firstResult,maxResult);
 	}
+
+	@Override
+	public Student updateStudent(Student std) {
+		
+		return studentSubjetDao.updateStudent(std);
+	}
+
+	@Override
+	public boolean deleteStudent(int id) {
+		
+		return studentSubjetDao.deleteStudent(id);
+	}
 }
