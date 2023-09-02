@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prowings.entity.Student;
 import com.prowings.entity.Subjects;
 import com.prowings.service.StudentSubjectService;
@@ -25,8 +29,20 @@ public class StudentSubjectController {
 	StudentSubjectService studentSubjectService;
 	
 	@PostMapping("/students")
-	public String saveStudent(@RequestBody Student std)
+	public String saveStudent(HttpEntity<String> httpEntity) throws JsonMappingException, JsonProcessingException
 	{
+		String requestBody = httpEntity.getBody();
+		System.out.println("Incoming Request is :"+ requestBody);
+		
+		System.out.println(httpEntity.getHeaders());
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		
+		Student std = objectMapper.readValue(requestBody,Student.class);
+		
+		System.out.println("Request received to create student : "+ std);
+		
 		if(studentSubjectService.saveStudent(std))
 			return "Student Saved Successfully !!!";
 		else
